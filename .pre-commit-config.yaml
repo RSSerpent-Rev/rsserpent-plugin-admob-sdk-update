@@ -17,7 +17,7 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
       - id: python-check-blanket-noqa
         name: Check Blanket "#noqa"
@@ -29,7 +29,7 @@ repos:
       - id: pyupgrade
         name: Upgrade Python Syntax
   - repo: https://github.com/crate-ci/typos
-    rev: typos-v0.10.23
+    rev: v1.21.0
     hooks:
       - id: typos
         name: Check Typos
@@ -74,7 +74,7 @@ repos:
           - pep8-naming==0.12.1
           - tryceratops==0.6.0
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v2.20.0
+    rev: v3.27.0
     hooks:
       - id: commitizen
         name: Check Commit Message
