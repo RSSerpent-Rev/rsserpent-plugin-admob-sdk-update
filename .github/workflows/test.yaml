@@ -9,7 +9,7 @@ on:
       - 'tests/**'
   push:
     branches:
-      -'main'
+      - 'main'
     paths:
       - '.github/workflows/test.yaml'
       - 'poetry.lock'
