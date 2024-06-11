@@ -27,9 +27,83 @@ requests = "^2.26.0"
 [tool.poetry.plugins."rsserpent.plugin"]
 "admob-sdk-update" = "rsserpent_plugin_admob_sdk_update:plugin"
 
-[tool.black]
-include = '\.pyi?$'
-target-version = ["py310"]
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # flake8-builtin
+    "A",
+    # flake8-comprehensions
+    "C4",
+    # flake8-datetimez
+    "DTZ",
+    # flake8-debugger
+    "T10",
+    # eradicate
+    "ERA",
+    # flake8-print
+    "T20",
+    # pep8-naming
+    "N",
+    # tryceratops
+    "TRY",
+    # pygrep-hooks
+    "PGH",
+]
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+target-version = "py310"
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+docstring-code-format = true
 
 [tool.coverage.run]
 include = ["rsserpent_plugin_admob_sdk_update/*"]
@@ -40,11 +114,21 @@ exclude_lines = [
     "pragma: no cover"
 ]
 
-[tool.isort]
-balanced_wrapping = true
-combine_as_imports = true
-lines_after_imports = 2
-profile = "black"
+[tool.mypy]
+plugins = [ "pydantic.mypy",]
+pretty = true
+python_version = "3.10"
+show_error_codes = true
+strict = true
+[[tool.mypy.overrides]]
+module = [ "pyquery.*",]
+ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
 
 [tool.nitpick]
 style = "https://raw.githubusercontent.com/RSSerpent-Rev/RSSerpent/master/styles/main.toml"

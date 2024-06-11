@@ -1,9 +1,8 @@
-from typing import Any, Dict
+from typing import Any
 
 import arrow
 from lxml import html
 from rsserpent_rev.utils import HTTPClient, cached
-
 
 path = "/admob/sdk-update/{platform}"
 
@@ -21,7 +20,7 @@ def __get_date(date_str: str) -> arrow.Arrow:
 
 
 @cached
-async def provider(platform: str) -> Dict[str, Any]:
+async def provider(platform: str) -> dict[str, Any]:
     """Return three latest AdMob SDK updates.
 
     Args:
@@ -39,7 +38,7 @@ async def provider(platform: str) -> Dict[str, Any]:
         "cpp": "C++",
     }
     if platform.lower() not in map_dict:
-        raise ValueError(f"Unsupported platform: {platform}")
+        raise ValueError(f"Unsupported platform: {platform}")  # noqa: TRY003
 
     async with HTTPClient() as client:
         platform_in_url = platform.replace("-", "_")
