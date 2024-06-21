@@ -53,11 +53,12 @@ async def provider(platform: str) -> dict[str, Any]:
                 continue
             version = row.xpath(".//td")[0].text_content()
             date_str = row.xpath(".//td")[1].text_content().strip()
-            note = row.xpath(".//td")[2].text_content()
+            # get html content
+            note = row.xpath(".//td")[2]
             items.append(
                 {
                     "title": f"AdMob SDK {map_dict[platform]} {version} Update",
-                    "description": note,
+                    "description": html.tostring(note, encoding="unicode"),
                     "link": url,
                     "pub_date": __get_date(date_str),
                 }
